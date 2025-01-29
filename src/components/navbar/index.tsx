@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Logo from "@/images/logo.png";
+import Link from "next/link";
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -10,9 +11,9 @@ function Index() {
     <header className="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full border-b border-gray-200 bg-white sticky top-0">
       <nav className="relative max-w-[85rem] w-full mx-auto md:flex md:items-center md:justify-between md:gap-3 py-3 px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center gap-x-1">
-          <a className="flex-none font-semibold text-xl text-black focus:outline-none focus:opacity-80" href="/" aria-label="Brand">
+          <Link className="flex-none font-semibold text-xl text-black focus:outline-none focus:opacity-80" href="/" aria-label="Brand">
             <img src={Logo.src} alt="" className="w-12 h-12" />
-          </a>
+          </Link>
 
           <button
             type="button"
@@ -36,7 +37,7 @@ function Index() {
 
         <div className={`transition-all duration-300 ${menuOpen ? "block" : "hidden"} md:block`}>
           <div className="py-2 md:py-0 flex flex-col md:flex-row md:items-center gap-0.5 md:gap-1">
-            <a className="p-2 flex items-center text-sm text-gray-800 hover:bg-gray-100 rounded-lg transition delay-50 duration-300 ease-in-out" href="/" onClick={() => setMenuOpen(false)}>Inicio</a>
+            <Link className="p-2 flex items-center text-sm text-gray-800 hover:bg-gray-100 rounded-lg transition delay-50 duration-300 ease-in-out" href="/" onClick={() => setMenuOpen(false)}>Inicio</Link>
 
             <a className="p-2 flex items-center text-sm text-gray-800 hover:bg-gray-100 rounded-lg transition delay-50 duration-300 ease-in-out hidden sm:block" href="#servicios">Servicios</a>
 

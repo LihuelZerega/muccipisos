@@ -1,19 +1,20 @@
 import React from "react";
 import Logo from "@/images/logo.png";
+import Link from "next/link";
 
 function index() {
   return (
     <footer className="mt-auto w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto border-t border-gray-200 bg-white">
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 mb-10">
         <div className="col-span-full hidden lg:col-span-1 lg:block">
-          <a
+          <Link
             className="flex-none font-semibold text-xl text-black focus:outline-none focus:opacity-80"
             href="/"
             aria-label="Brand"
           >
             {" "}
             <img src={Logo.src} alt="" className="w-24 h-24" />
-          </a>
+          </Link>
           <p className="mt-3 text-xs sm:text-sm text-gray-600">
             © 2025 Muccipisos.
           </p>
