@@ -30,49 +30,6 @@ const WhatsappIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const services = [
-  {
-    id: 1,
-    title: "Pisos Flotantes - Vinilicos",
-    description:
-      "Amplia variedad de pisos con sistema click, perfectos para transformar cualquier espacio con estilo y practicidad.",
-    image: PisosFlotantes,
-    modalInfo: "Información detallada sobre pisos flotantes y vinílicos...",
-    whatsappButton: "Solicitar Presupuesto",
-    whatsappMessage: "",
-  },
-  {
-    id: 2,
-    title: "Pulido y Plastificado - Hidrolaqueado",
-    description:
-      "Renovamos tus pisos de madera con técnicas profesionales que incluyen plastificado e hidrolaqueado, brindando protección, brillo y un acabado resistente al uso diario.",
-    image: PulidoyPlastificado,
-    modalInfo: "Detalles sobre el proceso de pulido y plastificado...",
-    whatsappButton: "Solicitar Presupuesto",
-    whatsappMessage: "",
-  },
-  {
-    id: 3,
-    title: "Pulido y Lustrado de Granito",
-    description:
-      "Recupera el esplendor de tus pisos de granito o mosaico con nuestro servicio de pulido y lustrado, eliminando rayones y manchas para un acabado impecable.",
-    image: PulidoyLustrado,
-    modalInfo: "Explicación sobre el pulido y lustrado de granito...",
-    whatsappButton: "",
-    whatsappMessage: "",
-  },
-  {
-    id: 4,
-    title: "Reparaciones",
-    description:
-      "Reparamos daños en tus pisos de madera o granito, devolviéndoles su funcionalidad y belleza original con un trabajo detallado y profesional.",
-    image: Reparaciones,
-    modalInfo: "Procedimientos y beneficios de nuestras reparaciones...",
-    whatsappButton: "",
-    whatsappMessage: "",
-  },
-];
-
 function Servicios() {
   const [selectedPisosFlotantes, setPisosFlotantes] = useState<boolean>(false);
   const [selectedPulidoyPlastificado, setPulidoyPlastificado] =
