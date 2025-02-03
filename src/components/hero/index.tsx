@@ -26,8 +26,7 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.2 }}
             >
-              Transformamos tus espacios con pisos que inspiran calidad y
-              elegancia
+              EMBELLECÉ TUS ESPACIOS CON NUESTRAS SOLUCIONES EN PISOS
             </motion.h1>
 
             <motion.span
@@ -36,32 +35,30 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.4 }}
             >
-              Con más de 50 años de experiencia, somos expertos en pisos de
-              madera y vinílicos. Trabajamos con los mejores productos, como
-              PETRILAC, para garantizar acabados duraderos y estéticos.
+              Transformamos tus superficies en ambientes estéticamente agradables y funcionales a tus necesidades
             </motion.span>
 
             <div className="mt-4 flex flex-col md:flex-row items-center space-x-4 mx-auto justify-center">
               <motion.a
                 whileHover="hover"
-                href="#"
+                href="#servicios"
                 className="bg-mucci-marron hover:bg-yellow-950 text-white font-poppins font-normal px-3.5 py-2.5 text-center rounded-md transition delay-50 duration-300 ease-in-out"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0.8 }}
               >
-                Solicitá tu Presupuesto Gratis
+                Nuestros servicios
               </motion.a>
 
               <motion.a
                 whileHover="hover"
-                href="#"
+                href="https://wa.me/5491124609514"
                 className="py-2 pr-3 text-white flex items-center transition delay-50 duration-300 ease-in-out"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 1 }}
               >
-                Conocé Nuestros Servicios
+                Contactanos!
               </motion.a>
             </div>
           </motion.div>
