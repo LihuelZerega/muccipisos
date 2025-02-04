@@ -8,11 +8,13 @@ import Servicios from "@/components/servicios";
 import SobreNosotros from "@/components/sobre-nosotros";
 import Testimonials from "@/components/testimonials";
 import Contacto from "@/components/contacto";
+import WhatsappBubble from "@/components/whatsapp-bubble";
 
 export default function Home() {
   return (
     <Suspense fallback={<Loader />}>
       <Navbar />
+      <WhatsappBubble />
       <Hero />
       <Petrilac />
       <hr className="max-w-2xl mx-auto" />
