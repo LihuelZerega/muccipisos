@@ -4,6 +4,26 @@ import QuienesSomos from "@/images/QuienesSomos.png";
 import HistoriayTrayectoria from "@/images/HistoriayTrayectoria.png";
 import Benefits from "../benefits";
 
+const Tick01Icon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width={24}
+    height={24}
+    color={"#79472e"}
+    fill={"none"}
+    {...props}
+  >
+    <path
+      d="M5 14.5C5 14.5 6.5 14.5 8.5 18C8.5 18 14.0588 8.83333 19 7"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 function index() {
   return (
     <div
@@ -14,8 +34,8 @@ function index() {
         inView
         className="flex flex-col items-cener justify-center text-center"
       >
-        <h2 className="text-3xl lg:text-5xl text-neutral-700 w-fit mx-auto">
-          Más de 50 Años Transformando Espacios <br /> con Pasión y Excelencia
+        <h2 className="text-4xl lg:text-5xl text-neutral-700 border-b-2 w-fit mx-auto border-mucci-marron">
+          Sobre Nosotros
         </h2>
       </BlurFade>
       <BlurFade
@@ -73,38 +93,56 @@ function index() {
                 </p>
               </li>
             </ul>
-            <ul className="pt-3">
+            <ul className="pt-3 space-y-0.5">
               <strong className="text-neutral-700">Valores:</strong>
-              <li className="space-x-1">
-                <strong className="text-neutral-600">Compromiso: </strong>
-                Responsabilidad que nos vincula a nuestros clientes, proveedores
-                y compañeros.
+              <li className="flex flex-row items-start space-x-1">
+                <Tick01Icon />
+                <span>
+                  <strong className="text-neutral-600">Compromiso: </strong>
+                  Responsabilidad que nos vincula a nuestros clientes,
+                  proveedores y compañeros.
+                </span>
               </li>
-              <li className="space-x-1">
-                <strong className="text-neutral-600">Calidad: </strong>
-                Estamos en constante búsqueda de la excelencia.
+              <li className="flex flex-row items-start space-x-1">
+                <Tick01Icon />
+                <span>
+                  <strong className="text-neutral-600">Calidad: </strong>
+                  Estamos en constante búsqueda de la excelencia.
+                </span>
               </li>
-              <li className="space-x-1">
-                <strong className="text-neutral-600">Integridad: </strong>
-                Actuamos y nos relacionamos de manera honesta, transparente,
-                coherente y respetuosa
+              <li className="flex flex-row items-start space-x-1">
+                <Tick01Icon />
+                <span>
+                  <strong className="text-neutral-600">Integridad: </strong>
+                  Actuamos y nos relacionamos de manera honesta, transparente,
+                  coherente y respetuosa
+                </span>
               </li>
-              <li className="space-x-1">
-                <strong className="text-neutral-600">Pasión: </strong>
-                Disfrutamos de lo que hacemos. Trabajamos con entusiasmo y
-                alegría.
+              <li className="flex flex-row items-start space-x-1">
+                <Tick01Icon />
+                <span>
+                  <strong className="text-neutral-600">Pasión: </strong>
+                  Disfrutamos de lo que hacemos. Trabajamos con entusiasmo y
+                  alegría.
+                </span>
               </li>
-              <li className="space-x-1">
-                <strong className="text-neutral-600">
-                  Espíritu de Equipo:{" "}
-                </strong>
-                Fomentamos el ambiente de colaboración, solidaridad y respeto
-                mutuo
+              <li className="flex flex-row items-start space-x-1">
+                <Tick01Icon />
+                <span>
+                  <strong className="text-neutral-600">
+                    Espíritu de Equipo:{" "}
+                  </strong>
+                  Fomentamos el ambiente de colaboración, solidaridad y respeto
+                  mutuo
+                </span>
               </li>
-              <li className="space-x-1">
-                <strong className="text-neutral-600">Iniciativa: </strong>
-                Proponemos ideas para mejorar y priorizamos la búsqueda de
-                soluciones.
+              <li className="flex flex-row items-start space-x-1">
+                <Tick01Icon />
+                <span>
+                  <strong className="text-neutral-600">Iniciativa: </strong>
+                  Proponemos ideas para mejorar y priorizamos la búsqueda de
+                  soluciones.
+                </span>
               </li>
             </ul>
           </div>
