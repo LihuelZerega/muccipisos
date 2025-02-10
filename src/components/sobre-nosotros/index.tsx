@@ -64,6 +64,10 @@ function index() {
               humano, para hoy ser MUCCIPISOS, una de las empresas más elegidas
               para embellecer sus hogares.
             </p>
+            <p>
+              Nuestra misión Ayudar a nuestros clientes a transformar sus ambientes en hermosos
+              espacios donde deseen pasar tiempo.
+            </p>
           </div>
         </div>
         <div className="flex md:hidden items-center justify-start">
@@ -81,20 +85,11 @@ function index() {
       >
         <div className="flex flex-col items-start justify-center">
           <h3 className="text-neutral-700 text-3xl lg:text-4xl font-poppins font-regular max-w-xl">
-            Sobre Nosotros
+            Nuestros Valores
           </h3>
           <div className="text-neutral-500 font-poppins">
-            <ul className="pt-3">
-              <li className="flex flex-row items-center space-x-1">
-                <p>
-                  <strong className="text-neutral-700">Misión:</strong> Ayudar a
-                  nuestros clientes a transformar sus ambientes en hermosos
-                  espacios donde deseen pasar tiempo.
-                </p>
-              </li>
-            </ul>
             <ul className="pt-3 space-y-0.5">
-              <strong className="text-neutral-700">Valores:</strong>
+              {/* <strong className="text-neutral-700">Valores:</strong> */}
               <li className="flex flex-row items-start space-x-1">
                 <Tick01Icon />
                 <span>
