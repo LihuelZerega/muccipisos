@@ -6,6 +6,22 @@ import PulidoyPlastificado from "@/images/PulidoyPlastificado.png";
 import PulidoyLustrado from "@/images/PulidoyLustrado.png";
 import Reparaciones from "@/images/Reparaciones.png";
 
+import CaratulaFlotantesMelaminicos from "@/images/Pisos Flotantes - Vinilicos/Flotantes Melaminicos/CARATULAFLOTANTESMELAMINICOS.png";
+import FlotantesMelaminicosAlbana from "@/images/Pisos Flotantes - Vinilicos/Flotantes Melaminicos/ALBANA.png";
+import FlotantesMelaminicosMolette from "@/images/Pisos Flotantes - Vinilicos/Flotantes Melaminicos/MOLETTE.png";
+import FlotantesMelaminicosPerle from "@/images/Pisos Flotantes - Vinilicos/Flotantes Melaminicos/PERLE.png";
+
+import CaratulaVinilicoRigido from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/CARATULA.png";
+import VinilicoRigidoGrisAntartico from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/GRIS ANTARTICO/GRIS ANTARTICO.png";
+import VinilicoRigidoGrisHormigon from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/GRIS HORMIGON/GRIS HORMIGON.png";
+import VinilicoRigidoRobleAustraliano from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/ROBLE AUSTRALIANO/7.png";
+import VinilicoRigidoRobleDelValle from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/ROBLE DEL VALLE/11.png";
+import VinilicoRigidoRobleEuropeo from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/ROBLE EUROPEO/4.png";
+import VinilicoRigidoRobleFrances from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/ROBLE FRANCES/13.png";
+import VinilicoRigidoRobleNude from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/ROBLE NUDE/R.NUDE.png";
+import VinilicoRigidoRoblePatina from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/ROBLE PATINA/9.png";
+import VinilicoRigidoRobleSierra from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/ROBLE SIERRA/2.png";
+
 const WhatsappIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -37,6 +53,16 @@ function Servicios() {
   const [selectedPulidoyLustrado, setPulidoyLustrado] =
     useState<boolean>(false);
   const [selectedReparaciones, setReparaciones] = useState<boolean>(false);
+  // Estados para los modales de carátulas
+  const [
+    showCaratulaFlotantesMelaminicos,
+    setShowCaratulaFlotantesMelaminicos,
+  ] = useState(false);
+  const [showCaratulaVinilicoRigido, setShowCaratulaVinilicoRigido] =
+    useState(false);
+  // Estados para lightbox de imágenes
+  const [selectedFlotanteImage, setSelectedFlotanteImage] = useState<string | null>(null);
+  const [selectedVinilicoImage, setSelectedVinilicoImage] = useState<string | null>(null);
 
   return (
     <div
@@ -141,8 +167,8 @@ function Servicios() {
       </BlurFade>
 
       {selectedPisosFlotantes && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg max-w-xl w-full mx-3 lg:mx-0">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-lg max-w-xl w-full mx-3 lg:mx-0 relative">
             <h3 className="text-neutral-700 text-xl font-semibold">
               Pisos Flotantes - Vinilicos
             </h3>
@@ -150,6 +176,35 @@ function Servicios() {
               Amplia variedad de pisos con sistema click, perfectos para
               transformar cualquier espacio con estilo y practicidad.
             </p>
+            {/* Carátulas clickeables */}
+            <div className="flex flex-row gap-4 justify-center items-center mt-6">
+              <div
+                className="cursor-pointer flex flex-col items-center"
+                onClick={() => setShowCaratulaFlotantesMelaminicos(true)}
+              >
+                <img
+                  src={CaratulaFlotantesMelaminicos.src}
+                  alt="Carátula Flotantes Melamínicos"
+                  className="w-full h-auto rounded shadow hover:shadow-xl transition-all duration-300"
+                />
+                <span className="text-xs mt-2 text-neutral-700">
+                  Flotantes Melamínicos
+                </span>
+              </div>
+              <div
+                className="cursor-pointer flex flex-col items-center"
+                onClick={() => setShowCaratulaVinilicoRigido(true)}
+              >
+                <img
+                  src={CaratulaVinilicoRigido.src}
+                  alt="Carátula Vinílico Rígido"
+                  className="w-full h-auto rounded shadow hover:shadow-xl transition-all duration-300"
+                />
+                <span className="text-xs mt-2 text-neutral-700">
+                  Vinílico Rígido
+                </span>
+              </div>
+            </div>
             <div className="flex flex-col-reverse gap-3 lg:flex-row lg:items-end lg:justify-end lg:space-x-3 mt-4">
               <button
                 className="bg-white border text-neutral-700 px-4 py-2 rounded"
@@ -157,17 +212,59 @@ function Servicios() {
               >
                 Cerrar
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal Carátula Flotantes Melamínicos */}
+      {showCaratulaFlotantesMelaminicos && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50">
+          <div className="bg-white p-6 rounded-lg max-w-2xl w-full mx-3 lg:mx-0 relative flex flex-col items-center">
+            <h4 className="text-lg font-semibold mb-4 text-neutral-700">
+              Flotantes Melamínicos
+            </h4>
+            {/* Galería de imágenes Flotantes Melamínicos */}
+            <div className="grid grid-cols-3 sm:grid-cols-3 gap-4 w-full mb-4">
+              <div className="flex flex-col items-center cursor-pointer" onClick={() => setSelectedFlotanteImage(FlotantesMelaminicosAlbana.src)}>
+                <img
+                  src={FlotantesMelaminicosAlbana.src}
+                  alt="Albana"
+                  className="w-32 h-auto rounded shadow hover:scale-105 transition-transform duration-200"
+                />
+                <span className="text-xs mt-2 text-neutral-700">Albana</span>
+              </div>
+              <div className="flex flex-col items-center cursor-pointer" onClick={() => setSelectedFlotanteImage(FlotantesMelaminicosMolette.src)}>
+                <img
+                  src={FlotantesMelaminicosMolette.src}
+                  alt="Molette"
+                  className="w-32 h-auto rounded shadow hover:scale-105 transition-transform duration-200"
+                />
+                <span className="text-xs mt-2 text-neutral-700">Molette</span>
+              </div>
+              <div className="flex flex-col items-center cursor-pointer" onClick={() => setSelectedFlotanteImage(FlotantesMelaminicosPerle.src)}>
+                <img
+                  src={FlotantesMelaminicosPerle.src}
+                  alt="Perle"
+                  className="w-32 h-auto rounded shadow hover:scale-105 transition-transform duration-200"
+                />
+                <span className="text-xs mt-2 text-neutral-700">Perle</span>
+              </div>
+            </div>
+            <div className="flex flex-col gap-2 text-sm text-neutral-700">
+              <p>• Formato de tabla: 7,5mm x 191mm x 1200mm</p>
+              <p>• Formato de la caja: 10 tablas / 2,30m2 </p>
+              <p>• Tipo de unión: Uniclic (ángulo-click)</p>
+              <p>• Clasificación: AC3 - Clase 31</p>
+              <p>• Resistente a derrames</p>
+              <p>
+                APTO ALTO TRANSITO RESIDENCIAL CAPA DECORATIVA SIMIL MADERA
+                REALISTA CON SISTEMA DE ENCASTRE
+              </p>
+            </div>
+            <div className="flex flex-row gap-3 justify-center items-center mt-4">
               <a
-                href="#"
-                className="flex flex-row items-center justify-center space-x-1 bg-green-500 hover:bg-green-600 font-semibold text-white px-4 py-2 rounded transition delay-50 duration-300 ease-in-out"
-              >
-                <span>
-                  <WhatsappIcon />
-                </span>
-                <span>Catalogo</span>
-              </a>
-              <a
-                href="https://wa.me/5491124609514?text=Hola Muccipisos, quiero contratar el servicio de Pisos Flotantes - Vinilicos"
+                href="https://wa.me/5491124609514?text=Hola Muccipisos, quiero contratar el servicio de Pisos Flotantes Melamínicos"
                 className="flex flex-row items-center justify-center space-x-1 bg-green-500 hover:bg-green-600 font-semibold text-white px-4 py-2 rounded transition delay-50 duration-300 ease-in-out"
               >
                 <span>
@@ -175,7 +272,171 @@ function Servicios() {
                 </span>
                 <span>Solicitar Presupuesto</span>
               </a>
+              <button
+                className="bg-white border text-neutral-700 px-4 py-2 rounded"
+                onClick={() => setShowCaratulaFlotantesMelaminicos(false)}
+              >
+                Cerrar
+              </button>
             </div>
+          </div>
+        </div>
+      )}
+      {/* Lightbox Flotantes Melamínicos */}
+      {selectedFlotanteImage && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+          <div className="relative flex flex-col items-center">
+            <img src={selectedFlotanteImage} alt="Imagen Flotante" className="max-h-[80vh] max-w-[90vw] rounded shadow-lg" />
+            <button
+              className="mt-4 bg-white border text-neutral-700 px-4 py-2 rounded"
+              onClick={() => setSelectedFlotanteImage(null)}
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Modal Carátula Vinílico Rígido */}
+      {showCaratulaVinilicoRigido && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-50">
+          <div className="bg-white p-6 rounded-lg max-w-2xl w-full mx-3 lg:mx-0 relative flex flex-col">
+            <h4 className="text-center text-lg font-semibold mb-4 text-neutral-700">
+              Carátula Vinílico Rígido
+            </h4>
+            {/* Galería de imágenes Vinílico Rígido */}
+            <div className="grid grid-cols-3 sm:grid-cols-5 gap-4 w-full mb-4">
+              <div className="flex flex-col items-center cursor-pointer" onClick={() => setSelectedVinilicoImage(VinilicoRigidoGrisAntartico.src)}>
+                <img
+                  src={VinilicoRigidoGrisAntartico.src}
+                  alt="Gris Antártico"
+                  className="w-28 h-auto rounded shadow hover:scale-105 transition-transform duration-200"
+                />
+                <span className="text-xs mt-2 text-neutral-700">
+                  Gris Antártico
+                </span>
+              </div>
+              <div className="flex flex-col items-center cursor-pointer" onClick={() => setSelectedVinilicoImage(VinilicoRigidoGrisHormigon.src)}>
+                <img
+                  src={VinilicoRigidoGrisHormigon.src}
+                  alt="Gris Hormigón"
+                  className="w-28 h-auto rounded shadow hover:scale-105 transition-transform duration-200"
+                />
+                <span className="text-xs mt-2 text-neutral-700">
+                  Gris Hormigón
+                </span>
+              </div>
+              <div className="flex flex-col items-center cursor-pointer" onClick={() => setSelectedVinilicoImage(VinilicoRigidoRobleAustraliano.src)}>
+                <img
+                  src={VinilicoRigidoRobleAustraliano.src}
+                  alt="Roble Australiano"
+                  className="w-28 h-auto rounded shadow hover:scale-105 transition-transform duration-200"
+                />
+                <span className="text-xs mt-2 text-neutral-700">
+                  Roble Australiano
+                </span>
+              </div>
+              <div className="flex flex-col items-center cursor-pointer" onClick={() => setSelectedVinilicoImage(VinilicoRigidoRobleDelValle.src)}>
+                <img
+                  src={VinilicoRigidoRobleDelValle.src}
+                  alt="Roble del Valle"
+                  className="w-28 h-auto rounded shadow hover:scale-105 transition-transform duration-200"
+                />
+                <span className="text-xs mt-2 text-neutral-700">
+                  Roble del Valle
+                </span>
+              </div>
+              <div className="flex flex-col items-center cursor-pointer" onClick={() => setSelectedVinilicoImage(VinilicoRigidoRobleEuropeo.src)}>
+                <img
+                  src={VinilicoRigidoRobleEuropeo.src}
+                  alt="Roble Europeo"
+                  className="w-28 h-auto rounded shadow hover:scale-105 transition-transform duration-200"
+                />
+                <span className="text-xs mt-2 text-neutral-700">
+                  Roble Europeo
+                </span>
+              </div>
+              <div className="flex flex-col items-center cursor-pointer" onClick={() => setSelectedVinilicoImage(VinilicoRigidoRobleFrances.src)}>
+                <img
+                  src={VinilicoRigidoRobleFrances.src}
+                  alt="Roble Francés"
+                  className="w-28 h-auto rounded shadow hover:scale-105 transition-transform duration-200"
+                />
+                <span className="text-xs mt-2 text-neutral-700">
+                  Roble Francés
+                </span>
+              </div>
+              <div className="flex flex-col items-center cursor-pointer" onClick={() => setSelectedVinilicoImage(VinilicoRigidoRobleNude.src)}>
+                <img
+                  src={VinilicoRigidoRobleNude.src}
+                  alt="Roble Nude"
+                  className="w-28 h-auto rounded shadow hover:scale-105 transition-transform duration-200"
+                />
+                <span className="text-xs mt-2 text-neutral-700">
+                  Roble Nude
+                </span>
+              </div>
+              <div className="flex flex-col items-center cursor-pointer" onClick={() => setSelectedVinilicoImage(VinilicoRigidoRoblePatina.src)}>
+                <img
+                  src={VinilicoRigidoRoblePatina.src}
+                  alt="Roble Patina"
+                  className="w-28 h-auto rounded shadow hover:scale-105 transition-transform duration-200"
+                />
+                <span className="text-xs mt-2 text-neutral-700">
+                  Roble Patina
+                </span>
+              </div>
+              <div className="flex flex-col items-center cursor-pointer" onClick={() => setSelectedVinilicoImage(VinilicoRigidoRobleSierra.src)}>
+                <img
+                  src={VinilicoRigidoRobleSierra.src}
+                  alt="Roble Sierra"
+                  className="w-28 h-auto rounded shadow hover:scale-105 transition-transform duration-200"
+                />
+                <span className="text-xs mt-2 text-neutral-700">
+                  Roble Sierra
+                </span>
+              </div>
+            </div>
+            <div className="flex flex-col gap-2 text-sm text-neutral-700">
+              <p>• Formato de tabla: 5,5mm(4+1,5 Eva) x 180mm x 1220mm</p>
+              <p>• Manta incorporada: EVA de 1,5mm </p>
+              <p>• Capa de desgaste: 0,5mm</p>
+              <p>• Contenido de la caja: 12 tablas</p>
+              <p>• M2 por caja: 2,64m2</p>
+              <p>• Resistente al agua y la humedad</p>
+              <p>• Sistema de encastre Click</p>
+            </div>
+            <div className="flex flex-row gap-3 justify-center items-center mt-4">
+              <a
+                href="https://wa.me/5491124609514?text=Hola Muccipisos, quiero contratar el servicio de Pisos Vinílicos Rígidos"
+                className="flex flex-row items-center justify-center space-x-1 bg-green-500 hover:bg-green-600 font-semibold text-white px-4 py-2 rounded transition delay-50 duration-300 ease-in-out"
+              >
+                <span>
+                  <WhatsappIcon />
+                </span>
+                <span>Solicitar Presupuesto</span>
+              </a>
+              <button
+                className="bg-white border text-neutral-700 px-4 py-2 rounded"
+                onClick={() => setShowCaratulaVinilicoRigido(false)}
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Lightbox Vinílico Rígido */}
+      {selectedVinilicoImage && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+          <div className="relative flex flex-col items-center">
+            <img src={selectedVinilicoImage} alt="Imagen Vinílico" className="max-h-[80vh] max-w-[90vw] rounded shadow-lg" />
+            <button
+              className="mt-4 bg-white border text-neutral-700 px-4 py-2 rounded"
+              onClick={() => setSelectedVinilicoImage(null)}
+            >
+              Cerrar
+            </button>
           </div>
         </div>
       )}
