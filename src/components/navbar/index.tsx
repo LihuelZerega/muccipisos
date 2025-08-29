@@ -141,13 +141,13 @@ function Index() {
               )}
             </div>
 
-            <a
+            <Link
               className="p-2 flex items-center text-sm text-gray-800 hover:bg-gray-100 rounded-lg transition delay-50 duration-300 ease-in-out"
               href="/pisos"
               onClick={() => setMenuOpen(false)}
             >
               Pisos
-            </a>
+            </Link>
 
             <a
               className="p-2 flex items-center text-sm text-gray-800 hover:bg-gray-100 rounded-lg transition delay-50 duration-300 ease-in-out"

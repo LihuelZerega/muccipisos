@@ -9,7 +9,7 @@ import SobreNosotros from "@/components/sobre-nosotros";
 import Testimonials from "@/components/testimonials";
 import Contacto from "@/components/contacto";
 import WhatsappBubble from "@/components/whatsapp-bubble";
-import Colecciones from "@/components/colecciones";
+// import Colecciones from "@/components/colecciones";
 
 export default function Home() {
   return (

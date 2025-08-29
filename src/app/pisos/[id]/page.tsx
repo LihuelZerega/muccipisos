@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
-import { StarIcon } from '@heroicons/react/20/solid'
+// import { StarIcon } from '@heroicons/react/20/solid'
 import { ChevronLeftIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import Navbar from "@/components/navbar";
@@ -32,9 +32,9 @@ interface PisoProduct {
   "Imagen 4": string;
 }
 
-function classNames(...classes: (string | undefined | null | false)[]) {
-  return classes.filter(Boolean).join(' ')
-}
+// function classNames(...classes: (string | undefined | null | false)[]) {
+//   return classes.filter(Boolean).join(' ')
+// }
 
 export default function ProductDetail() {
   const params = useParams()

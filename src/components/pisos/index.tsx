@@ -8,18 +8,18 @@ import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
+  // Menu,
+  // MenuButton,
+  // MenuItem,
+  // MenuItems,
 } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
-  ChevronDownIcon,
+  // ChevronDownIcon,
   FunnelIcon,
   MinusIcon,
   PlusIcon,
-  Squares2X2Icon,
+  // Squares2X2Icon,
 } from "@heroicons/react/20/solid";
 
 // Interfaz para los productos de pisos
@@ -45,18 +45,9 @@ interface PisoProduct {
   "Imagen 4": string;
 }
 
-// Opciones de ordenamiento
-const sortOptions = [
-  { name: "Más Populares", href: "#", current: true },
-  { name: "Mejor Calificación", href: "#", current: false },
-  { name: "Más Nuevos", href: "#", current: false },
-  { name: "Precio: Menor a Mayor", href: "#", current: false },
-  { name: "Precio: Mayor a Menor", href: "#", current: false },
-];
-
-function classNames(...classes: (string | undefined | null | false)[]) {
-  return classes.filter(Boolean).join(" ");
-}
+// function classNames(...classes: (string | undefined | null | false)[]) {
+//   return classes.filter(Boolean).join(" ");
+// }
 
 export default function PisosComponent() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
