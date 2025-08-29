@@ -9,6 +9,7 @@ import SobreNosotros from "@/components/sobre-nosotros";
 import Testimonials from "@/components/testimonials";
 import Contacto from "@/components/contacto";
 import WhatsappBubble from "@/components/whatsapp-bubble";
+import Colecciones from "@/components/colecciones";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <WhatsappBubble />
       <Hero />
       <Petrilac />
+      {/* <Colecciones /> */}
       <hr className="max-w-2xl mx-auto" />
       <Servicios />
       <hr className="max-w-2xl mx-auto" />
