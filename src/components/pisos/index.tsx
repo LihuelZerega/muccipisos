@@ -381,7 +381,7 @@ export default function PisosComponent() {
                 <button
                   type="button"
                   onClick={() => setMobileFiltersOpen(false)}
-                  className="relative -mr-2 flex size-10 items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-50 focus:ring-2 focus:ring-indigo-500 focus:outline-hidden"
+                  className="relative -mr-2 flex size-10 items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-50 focus:ring-2 focus:ring-mucci-marron focus:outline-hidden"
                 >
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Cerrar menú</span>
@@ -650,7 +650,7 @@ export default function PisosComponent() {
                       <div className="mt-4 flex justify-between">
                         <div>
                           <h3 className="text-sm text-gray-700">
-                            <a href={`/pisos/${product.id}`} className="hover:text-indigo-600">
+                            <a href={`/pisos/${product.id}`} className="hover:text-mucci-marron">
                               <span
                                 aria-hidden="true"
                                 className="absolute inset-0"
@@ -674,14 +674,6 @@ export default function PisosComponent() {
                         <p className="text-sm text-gray-600">
                           <strong>Resistencia:</strong> {product.Resistencia}
                         </p>
-                      </div>
-                      <div className="mt-4">
-                        <a
-                          href={`/pisos/${product.id}`}
-                          className="inline-flex items-center px-3 py-2 text-sm font-medium text-indigo-600 bg-white border border-indigo-600 rounded-md hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                          Ver detalles
-                        </a>
                       </div>
                     </div>
                   ))}
