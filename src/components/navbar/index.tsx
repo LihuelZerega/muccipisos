@@ -146,7 +146,7 @@ function Index() {
               href="/pisos"
               onClick={() => setMenuOpen(false)}
             >
-              Pisos
+              Pisos Flotantes - Vinilicos
             </Link>
 
             <a
