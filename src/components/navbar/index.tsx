@@ -76,12 +76,12 @@ function Index() {
               Inicio
             </Link>
 
-            <a
+            <Link
               className="p-2 flex items-center text-sm text-gray-800 hover:bg-gray-100 rounded-lg transition delay-50 duration-300 ease-in-out hidden sm:block"
               href="/#servicios"
             >
               Servicios
-            </a>
+            </Link>
 
             <div className="relative block sm:hidden">
               <button
@@ -110,34 +110,34 @@ function Index() {
 
               {dropdownOpen && (
                 <div className="relative w-full md:w-52 bg-white md:rounded-lg md:shadow-md p-2">
-                  <a
+                  <Link
                     className="p-2 block text-sm text-gray-800 hover:bg-gray-100 rounded-lg"
                     href="/#servicios"
                     onClick={() => setMenuOpen(false)}
                   >
                     Pisos Flotantes - Vinilicos
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     className="p-2 block text-sm text-gray-800 hover:bg-gray-100 rounded-lg"
                     href="/#servicios"
                     onClick={() => setMenuOpen(false)}
                   >
                     Pulido y Plastificado - Hidrolaqueado
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     className="p-2 block text-sm text-gray-800 hover:bg-gray-100 rounded-lg"
                     href="/#servicios"
                     onClick={() => setMenuOpen(false)}
                   >
                     Pulido y Lustrado de Granito
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     className="p-2 block text-sm text-gray-800 hover:bg-gray-100 rounded-lg"
                     href="/#servicios"
                     onClick={() => setMenuOpen(false)}
                   >
                     Reparaciones
-                  </a>
+                  </Link>
                 </div>
               )}
             </div>
@@ -202,33 +202,33 @@ function Index() {
               Pisos Flotantes - Vinilicos
             </Link>
 
-            <a
+            <Link
               className="p-2 flex items-center text-sm text-gray-800 hover:bg-gray-100 rounded-lg transition delay-50 duration-300 ease-in-out"
               href="/#sobre-nosotros"
               onClick={() => setMenuOpen(false)}
             >
               Sobre Nosotros
-            </a>
+            </Link>
 
-            <a
+            <Link
               className="p-2 flex items-center text-sm text-gray-800 hover:bg-gray-100 rounded-lg transition delay-50 duration-300 ease-in-out"
               href="/#contacto"
               onClick={() => setMenuOpen(false)}
             >
               Contacto
-            </a>
+            </Link>
 
             <div className="my-2 md:my-0 md:mx-2">
               <div className="w-full h-px md:w-px md:h-4 bg-gray-100 md:bg-gray-300"></div>
             </div>
 
             <div className="flex flex-wrap items-center gap-x-1.5">
-              <a
+              <Link
                 className="px-3 py-2 inline-flex items-center font-semibold text-sm rounded-lg bg-mucci-marron text-white hover:bg-yellow-950 focus:outline-none focus:bg-yellow-950 disabled:opacity-50 disabled:pointer-events-none transition delay-50 duration-300 ease-in-out"
                 href="https://wa.me/5491124609514"
               >
                 Pedir Presupuesto
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -8,20 +8,20 @@ import PulidoyLustrado from "@/images/PulidoyLustrado.png";
 import Reparaciones from "@/images/Reparaciones.png";
 
 import CaratulaFlotantesMelaminicos from "@/images/Pisos Flotantes - Vinilicos/Flotantes Melaminicos/CARATULAFLOTANTESMELAMINICOS.png";
-import FlotantesMelaminicosAlbana from "@/images/Pisos Flotantes - Vinilicos/Flotantes Melaminicos/ALBANA.png";
-import FlotantesMelaminicosMolette from "@/images/Pisos Flotantes - Vinilicos/Flotantes Melaminicos/MOLETTE.png";
-import FlotantesMelaminicosPerle from "@/images/Pisos Flotantes - Vinilicos/Flotantes Melaminicos/PERLE.png";
+// import FlotantesMelaminicosAlbana from "@/images/Pisos Flotantes - Vinilicos/Flotantes Melaminicos/ALBANA.png";
+// import FlotantesMelaminicosMolette from "@/images/Pisos Flotantes - Vinilicos/Flotantes Melaminicos/MOLETTE.png";
+// import FlotantesMelaminicosPerle from "@/images/Pisos Flotantes - Vinilicos/Flotantes Melaminicos/PERLE.png";
 
 import CaratulaVinilicoRigido from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/CARATULA.png";
-import VinilicoRigidoGrisAntartico from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/GRIS ANTARTICO/GRIS ANTARTICO.png";
-import VinilicoRigidoGrisHormigon from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/GRIS HORMIGON/GRIS HORMIGON.png";
-import VinilicoRigidoRobleAustraliano from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/ROBLE AUSTRALIANO/7.png";
-import VinilicoRigidoRobleDelValle from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/ROBLE DEL VALLE/11.png";
-import VinilicoRigidoRobleEuropeo from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/ROBLE EUROPEO/4.png";
-import VinilicoRigidoRobleFrances from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/ROBLE FRANCES/13.png";
-import VinilicoRigidoRobleNude from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/ROBLE NUDE/R.NUDE.png";
-import VinilicoRigidoRoblePatina from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/ROBLE PATINA/9.png";
-import VinilicoRigidoRobleSierra from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/ROBLE SIERRA/2.png";
+// import VinilicoRigidoGrisAntartico from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/GRIS ANTARTICO/GRIS ANTARTICO.png";
+// import VinilicoRigidoGrisHormigon from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/GRIS HORMIGON/GRIS HORMIGON.png";
+// import VinilicoRigidoRobleAustraliano from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/ROBLE AUSTRALIANO/7.png";
+// import VinilicoRigidoRobleDelValle from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/ROBLE DEL VALLE/11.png";
+// import VinilicoRigidoRobleEuropeo from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/ROBLE EUROPEO/4.png";
+// import VinilicoRigidoRobleFrances from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/ROBLE FRANCES/13.png";
+// import VinilicoRigidoRobleNude from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/ROBLE NUDE/R.NUDE.png";
+// import VinilicoRigidoRoblePatina from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/ROBLE PATINA/9.png";
+// import VinilicoRigidoRobleSierra from "@/images/Pisos Flotantes - Vinilicos/Vinilico Rigido/ROBLE SIERRA/2.png";
 
 const WhatsappIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
