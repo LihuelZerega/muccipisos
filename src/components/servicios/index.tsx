@@ -55,19 +55,19 @@ function Servicios() {
     useState<boolean>(false);
   const [selectedReparaciones, setReparaciones] = useState<boolean>(false);
   // Estados para los modales de carátulas
-  const [
-    showCaratulaFlotantesMelaminicos,
-    setShowCaratulaFlotantesMelaminicos,
-  ] = useState(false);
-  const [showCaratulaVinilicoRigido, setShowCaratulaVinilicoRigido] =
-    useState(false);
-  // Estados para lightbox de imágenes
-  const [selectedFlotanteImage, setSelectedFlotanteImage] = useState<
-    string | null
-  >(null);
-  const [selectedVinilicoImage, setSelectedVinilicoImage] = useState<
-    string | null
-  >(null);
+  // const [
+  //   showCaratulaFlotantesMelaminicos,
+  //   setShowCaratulaFlotantesMelaminicos,
+  // ] = useState(false);
+  // const [showCaratulaVinilicoRigido, setShowCaratulaVinilicoRigido] =
+  //   useState(false);
+  // // Estados para lightbox de imágenes
+  // const [selectedFlotanteImage, setSelectedFlotanteImage] = useState<
+  //   string | null
+  // >(null);
+  // const [selectedVinilicoImage, setSelectedVinilicoImage] = useState<
+  //   string | null
+  // >(null);
 
   return (
     <div
