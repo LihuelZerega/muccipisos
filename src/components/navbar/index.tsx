@@ -6,6 +6,7 @@ import Link from "next/link";
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [dropdownPisosOpen, setDropdownPisosOpen] = useState(false);
 
   return (
     <header className="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full border-b border-gray-200 bg-white sticky top-0">
@@ -77,7 +78,7 @@ function Index() {
 
             <a
               className="p-2 flex items-center text-sm text-gray-800 hover:bg-gray-100 rounded-lg transition delay-50 duration-300 ease-in-out hidden sm:block"
-              href="#servicios"
+              href="/#servicios"
             >
               Servicios
             </a>
@@ -111,28 +112,28 @@ function Index() {
                 <div className="relative w-full md:w-52 bg-white md:rounded-lg md:shadow-md p-2">
                   <a
                     className="p-2 block text-sm text-gray-800 hover:bg-gray-100 rounded-lg"
-                    href="#servicios"
+                    href="/#servicios"
                     onClick={() => setMenuOpen(false)}
                   >
                     Pisos Flotantes - Vinilicos
                   </a>
                   <a
                     className="p-2 block text-sm text-gray-800 hover:bg-gray-100 rounded-lg"
-                    href="#servicios"
+                    href="/#servicios"
                     onClick={() => setMenuOpen(false)}
                   >
                     Pulido y Plastificado - Hidrolaqueado
                   </a>
                   <a
                     className="p-2 block text-sm text-gray-800 hover:bg-gray-100 rounded-lg"
-                    href="#servicios"
+                    href="/#servicios"
                     onClick={() => setMenuOpen(false)}
                   >
                     Pulido y Lustrado de Granito
                   </a>
                   <a
                     className="p-2 block text-sm text-gray-800 hover:bg-gray-100 rounded-lg"
-                    href="#servicios"
+                    href="/#servicios"
                     onClick={() => setMenuOpen(false)}
                   >
                     Reparaciones
@@ -141,8 +142,60 @@ function Index() {
               )}
             </div>
 
+            <div className="relative block sm:hidden">
+              <button
+                type="button"
+                className="w-full p-2 flex items-center text-sm text-gray-800 hover:bg-gray-100 rounded-lg transition delay-50 duration-300 ease-in-out"
+                onClick={() => setDropdownPisosOpen(!dropdownPisosOpen)}
+              >
+                Pisos
+                <svg
+                  className={`size-4 ms-auto transform transition-transform ${
+                    dropdownPisosOpen ? "-rotate-180" : "rotate-0"
+                  }`}
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+
+              {dropdownPisosOpen && (
+                <div className="relative w-full md:w-52 bg-white md:rounded-lg md:shadow-md p-2">
+                  <Link
+                    className="p-2 block text-sm text-gray-800 hover:bg-gray-100 rounded-lg"
+                    href={{
+                      pathname: "/pisos",
+                      query: { categoria: "Flotante Melamínico" },
+                    }}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    Flotantes Melamínicos
+                  </Link>
+
+                  <Link
+                    className="p-2 block text-sm text-gray-800 hover:bg-gray-100 rounded-lg"
+                    href={{
+                      pathname: "/pisos",
+                      query: { categoria: "Vinílico Rígido" },
+                    }}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    Vinílico Rígido
+                  </Link>
+                </div>
+              )}
+            </div>
+
             <Link
-              className="p-2 flex items-center text-sm text-gray-800 hover:bg-gray-100 rounded-lg transition delay-50 duration-300 ease-in-out"
+              className="hidden p-2 sm:flex items-center text-sm text-gray-800 hover:bg-gray-100 rounded-lg transition delay-50 duration-300 ease-in-out"
               href="/pisos"
               onClick={() => setMenuOpen(false)}
             >
@@ -151,7 +204,7 @@ function Index() {
 
             <a
               className="p-2 flex items-center text-sm text-gray-800 hover:bg-gray-100 rounded-lg transition delay-50 duration-300 ease-in-out"
-              href="#sobre-nosotros"
+              href="/#sobre-nosotros"
               onClick={() => setMenuOpen(false)}
             >
               Sobre Nosotros
@@ -159,7 +212,7 @@ function Index() {
 
             <a
               className="p-2 flex items-center text-sm text-gray-800 hover:bg-gray-100 rounded-lg transition delay-50 duration-300 ease-in-out"
-              href="#contacto"
+              href="/#contacto"
               onClick={() => setMenuOpen(false)}
             >
               Contacto
@@ -172,7 +225,7 @@ function Index() {
             <div className="flex flex-wrap items-center gap-x-1.5">
               <a
                 className="px-3 py-2 inline-flex items-center font-semibold text-sm rounded-lg bg-mucci-marron text-white hover:bg-yellow-950 focus:outline-none focus:bg-yellow-950 disabled:opacity-50 disabled:pointer-events-none transition delay-50 duration-300 ease-in-out"
-                href="#"
+                href="https://wa.me/5491124609514"
               >
                 Pedir Presupuesto
               </a>

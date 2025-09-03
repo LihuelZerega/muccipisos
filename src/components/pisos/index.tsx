@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import {
   Dialog,
   DialogBackdrop,
@@ -8,21 +9,10 @@ import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
-  // Menu,
-  // MenuButton,
-  // MenuItem,
-  // MenuItems,
 } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import {
-  // ChevronDownIcon,
-  FunnelIcon,
-  MinusIcon,
-  PlusIcon,
-  // Squares2X2Icon,
-} from "@heroicons/react/20/solid";
+import { FunnelIcon, MinusIcon, PlusIcon } from "@heroicons/react/20/solid";
 
-// Interfaz para los productos de pisos
 interface PisoProduct {
   row_number: number;
   id: number;
@@ -45,15 +35,28 @@ interface PisoProduct {
   "Imagen 4": string;
 }
 
-// function classNames(...classes: (string | undefined | null | false)[]) {
-//   return classes.filter(Boolean).join(" ");
-// }
+/** Helpers de normalización */
+const norm = (s?: string) =>
+  (s ?? "")
+    .toString()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "") // quita acentos
+    .toLowerCase()
+    .trim();
+
+const someNorm = (arr: string[], val: string) =>
+  arr.some((v) => norm(v) === norm(val));
 
 export default function PisosComponent() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [products, setProducts] = useState<PisoProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
   const [selectedFilters, setSelectedFilters] = useState<{
     [key: string]: string[];
   }>({
@@ -66,10 +69,10 @@ export default function PisosComponent() {
     resistenciaDesgaste: [],
     mantaIncorporada: [],
   });
+
   const [searchTerm, setSearchTerm] = useState("");
   const [showOnlyWithImages, setShowOnlyWithImages] = useState(false);
 
-  // Estados para filtros dinámicos
   const [categories, setCategories] = useState<string[]>([]);
   const [tipos, setTipos] = useState<string[]>([]);
   const [resistencias, setResistencias] = useState<string[]>([]);
@@ -81,7 +84,132 @@ export default function PisosComponent() {
   );
   const [mantasIncorporadas, setMantasIncorporadas] = useState<string[]>([]);
 
-  // Fetch de datos de la API
+  /** Bandera: ya hidratamos el estado desde la query inicial */
+  const [hydratedFromQuery, setHydratedFromQuery] = useState(false);
+
+  /** Lee filtros desde la URL y setea estado, luego marca hidratado */
+  useEffect(() => {
+    const categorias = searchParams?.getAll("categoria") ?? [];
+    const tipos = searchParams?.getAll("tipo") ?? [];
+    const resistencias = searchParams?.getAll("resistencia") ?? [];
+    const origenes = searchParams?.getAll("origen") ?? [];
+    const texturas = searchParams?.getAll("textura") ?? [];
+    const tiposUnion = searchParams?.getAll("tipoUnion") ?? [];
+    const resistenciasDesgaste =
+      searchParams?.getAll("resistenciaDesgaste") ?? [];
+    const mantasIncorporada = searchParams?.getAll("mantaIncorporada") ?? [];
+
+    const buscador = searchParams?.get("q") ?? "";
+    const onlyImgs = (searchParams?.get("conImagen") ?? "0") === "1";
+
+    setSelectedFilters((prev) => ({
+      ...prev,
+      categoria: categorias,
+      tipo: tipos,
+      resistencia: resistencias,
+      origen: origenes,
+      textura: texturas,
+      tipoUnion: tiposUnion,
+      resistenciaDesgaste: resistenciasDesgaste,
+      mantaIncorporada: mantasIncorporada,
+    }));
+    setSearchTerm(buscador);
+    setShowOnlyWithImages(onlyImgs);
+
+    setHydratedFromQuery(true);
+  }, [searchParams]);
+
+  /** Construye y escribe la URL desde el estado (con guardas) */
+  const updateUrlFromState = useMemo(() => {
+    return (state: {
+      selected: typeof selectedFilters;
+      q: string;
+      onlyImgs: boolean;
+    }) => {
+      const params = new URLSearchParams();
+
+      const pushAll = (key: string, arr: string[]) => {
+        arr.filter(Boolean).forEach((v) => params.append(key, v));
+      };
+
+      pushAll("categoria", state.selected.categoria);
+      pushAll("tipo", state.selected.tipo);
+      pushAll("resistencia", state.selected.resistencia);
+      pushAll("origen", state.selected.origen);
+      pushAll("textura", state.selected.textura);
+      pushAll("tipoUnion", state.selected.tipoUnion);
+      pushAll("resistenciaDesgaste", state.selected.resistenciaDesgaste);
+      pushAll("mantaIncorporada", state.selected.mantaIncorporada);
+
+      if (state.q) params.set("q", state.q);
+      if (state.onlyImgs) params.set("conImagen", "1");
+
+      const nextQs = params.toString();
+      const currQs =
+        typeof window !== "undefined"
+          ? window.location.search.startsWith("?")
+            ? window.location.search.slice(1)
+            : window.location.search
+          : "";
+
+      // Nada que hacer si no cambia
+      if (nextQs === currQs) return;
+
+      const basePath = pathname || "/pisos";
+      router.replace(nextQs ? `${basePath}?${nextQs}` : basePath, {
+        scroll: false,
+      });
+    };
+  }, [pathname, router]);
+
+  /** Solo escribimos a la URL cuando ya hidratamos y corresponde */
+  useEffect(() => {
+    if (!hydratedFromQuery) return;
+
+    const hasState =
+      Object.values(selectedFilters).some((arr) => arr.length > 0) ||
+      !!searchTerm ||
+      !!showOnlyWithImages;
+
+    const currQs = typeof window !== "undefined" ? window.location.search : "";
+    const hasIncomingQuery = !!currQs && currQs !== "?";
+
+    // Si venimos con query y todavía no hay estado (primer render), no limpies la URL
+    if (!hasState && hasIncomingQuery) return;
+
+    updateUrlFromState({
+      selected: selectedFilters,
+      q: searchTerm,
+      onlyImgs: showOnlyWithImages,
+    });
+  }, [
+    hydratedFromQuery,
+    selectedFilters,
+    searchTerm,
+    showOnlyWithImages,
+    updateUrlFromState,
+  ]);
+
+  /** Limpiar todos los filtros (y la URL) */
+  const clearAllFilters = () => {
+    setSelectedFilters({
+      categoria: [],
+      tipo: [],
+      resistencia: [],
+      origen: [],
+      textura: [],
+      tipoUnion: [],
+      resistenciaDesgaste: [],
+      mantaIncorporada: [],
+    });
+    setSearchTerm("");
+    setShowOnlyWithImages(false);
+
+    const basePath = pathname || "/pisos";
+    router.replace(basePath, { scroll: false });
+  };
+
+  /** Carga de productos y armado de opciones únicas */
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -95,7 +223,6 @@ export default function PisosComponent() {
         const data = await response.json();
         setProducts(data);
 
-        // Extraer valores únicos para los filtros
         const uniqueCategories = Array.from(
           new Set(data.map((p: PisoProduct) => p.Categoria))
         ).filter(Boolean) as string[];
@@ -140,7 +267,7 @@ export default function PisosComponent() {
     fetchProducts();
   }, []);
 
-  // Función para manejar cambios en filtros
+  /** Cambios de filtros (checkboxes) */
   const handleFilterChange = (filterType: string, value: string) => {
     setSelectedFilters((prev) => {
       const currentValues = prev[filterType] || [];
@@ -155,52 +282,33 @@ export default function PisosComponent() {
     });
   };
 
-  // Función para limpiar todos los filtros
-  const clearAllFilters = () => {
-    setSelectedFilters({
-      categoria: [],
-      tipo: [],
-      resistencia: [],
-      origen: [],
-      textura: [],
-      tipoUnion: [],
-      resistenciaDesgaste: [],
-      mantaIncorporada: [],
-    });
-    setSearchTerm("");
-    setShowOnlyWithImages(false);
-  };
-
-  // Verificar si hay filtros activos
+  /** Estado de filtros activos */
   const hasActiveFilters =
     Object.values(selectedFilters).some((filters) => filters.length > 0) ||
-    searchTerm ||
-    showOnlyWithImages;
+    !!searchTerm ||
+    !!showOnlyWithImages;
 
-  // Función para filtrar productos
+  /** Filtrado de productos (categoría con normalización) */
   const filteredProducts = products.filter((product) => {
-    // Filtro por búsqueda de texto
-    if (
-      searchTerm &&
-      !product.Titulo.toLowerCase().includes(searchTerm.toLowerCase())
-    ) {
+    // Texto
+    if (searchTerm && !norm(product.Titulo).includes(norm(searchTerm))) {
       return false;
     }
 
-    // Filtro por imágenes disponibles
+    // Solo con imagen
     if (showOnlyWithImages && !product["Imagen 1"]) {
       return false;
     }
 
-    // Filtro por categoría
+    // Categoría (normalizada)
     if (
       selectedFilters.categoria.length > 0 &&
-      !selectedFilters.categoria.includes(product.Categoria)
+      !someNorm(selectedFilters.categoria, product.Categoria)
     ) {
       return false;
     }
 
-    // Filtro por tipo
+    // Tipo
     if (
       selectedFilters.tipo.length > 0 &&
       !selectedFilters.tipo.includes(product.Tipo)
@@ -208,7 +316,7 @@ export default function PisosComponent() {
       return false;
     }
 
-    // Filtro por resistencia
+    // Resistencia
     if (
       selectedFilters.resistencia.length > 0 &&
       !selectedFilters.resistencia.includes(product.Resistencia)
@@ -216,7 +324,7 @@ export default function PisosComponent() {
       return false;
     }
 
-    // Filtro por origen
+    // Origen
     if (
       selectedFilters.origen.length > 0 &&
       !selectedFilters.origen.includes(product.Origen)
@@ -224,7 +332,7 @@ export default function PisosComponent() {
       return false;
     }
 
-    // Filtro por textura
+    // Textura
     if (
       selectedFilters.textura.length > 0 &&
       !selectedFilters.textura.includes(product.Textura)
@@ -232,7 +340,7 @@ export default function PisosComponent() {
       return false;
     }
 
-    // Filtro por tipo de unión
+    // Tipo de unión
     if (
       selectedFilters.tipoUnion.length > 0 &&
       !selectedFilters.tipoUnion.includes(product["Tipo de Union"])
@@ -240,7 +348,7 @@ export default function PisosComponent() {
       return false;
     }
 
-    // Filtro por resistencia al desgaste
+    // Resistencia al desgaste
     if (
       selectedFilters.resistenciaDesgaste.length > 0 &&
       !selectedFilters.resistenciaDesgaste.includes(
@@ -250,7 +358,7 @@ export default function PisosComponent() {
       return false;
     }
 
-    // Filtro por manta incorporada
+    // Manta incorporada
     if (
       selectedFilters.mantaIncorporada.length > 0 &&
       !selectedFilters.mantaIncorporada.includes(product["Manta incorporada"])
@@ -261,7 +369,7 @@ export default function PisosComponent() {
     return true;
   });
 
-  // Configuración de filtros dinámicos
+  /** Configuración de filtros dinámicos */
   const filters = [
     {
       id: "categoria",
@@ -269,7 +377,7 @@ export default function PisosComponent() {
       options: categories.map((cat) => ({
         value: cat,
         label: cat,
-        checked: selectedFilters.categoria.includes(cat),
+        checked: someNorm(selectedFilters.categoria, cat),
       })),
     },
     {
@@ -511,9 +619,9 @@ export default function PisosComponent() {
 
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
               {/* Filters */}
-              
+
               <form className="hidden lg:block">
-              <div className="max-w-md">
+                <div className="max-w-md">
                   <label htmlFor="search" className="sr-only">
                     Buscar productos
                   </label>
@@ -637,7 +745,9 @@ export default function PisosComponent() {
                       <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200">
                         <a href={`/pisos/${product.id}`}>
                           <img
-                            src={product["Imagen 1"] || "/placeholder-image.svg"}
+                            src={
+                              product["Imagen 1"] || "/placeholder-image.svg"
+                            }
                             alt={product.Titulo}
                             className="h-full w-full object-cover object-center group-hover:opacity-75"
                             onError={(e) => {
@@ -650,7 +760,10 @@ export default function PisosComponent() {
                       <div className="mt-4 flex justify-between">
                         <div>
                           <h3 className="text-sm text-gray-700">
-                            <a href={`/pisos/${product.id}`} className="hover:text-mucci-marron">
+                            <a
+                              href={`/pisos/${product.id}`}
+                              className="hover:text-mucci-marron"
+                            >
                               <span
                                 aria-hidden="true"
                                 className="absolute inset-0"
