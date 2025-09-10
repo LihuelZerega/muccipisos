@@ -100,14 +100,14 @@ function Servicios() {
               Amplia variedad de pisos con sistema click, perfectos para
               transformar cualquier espacio con estilo y practicidad.
             </p>
-            <a href="/pisos">
+            <Link href="/pisos">
               <button
                 className="text-mucci-marron font-semibold text-sm text-left"
                 // onClick={() => setPisosFlotantes(true)}
               >
                 VER MÁS INFORMACIÓN
               </button>
-            </a>
+            </Link>
           </div>
         </section>
 
